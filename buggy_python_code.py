@@ -2,6 +2,7 @@ import sys
 import os
 import yaml
 import flask
+import urllib{urllib_version} as urllib
 
 app = flask.Flask(__name__)
 
@@ -25,7 +26,6 @@ def print_nametag(format_string, person):
 
 def fetch_website(urllib_version, url):
     # Import the requested version (2 or 3) of urllib
-    import urllib{urllib_version} as urllib
     # Fetch and print the requested URL
 
     try: 
@@ -33,6 +33,7 @@ def fetch_website(urllib_version, url):
         r = http.request('GET', url)
     except:
         print('Exception')
+        exit()
 
 
 def load_yaml(filename):
@@ -40,10 +41,12 @@ def load_yaml(filename):
     deserialized_data = yaml.load(stream, Loader=yaml.Loader) #deserializing data
     return deserialized_data
 
+
 def authenticate(password):
     # Assert that the password is correct
     assert password == "Iloveyou", "Invalid password!"
     print("Successfully authenticated!")
+
 
 if __name__ == '__main__':
     print("Vulnerabilities:")
